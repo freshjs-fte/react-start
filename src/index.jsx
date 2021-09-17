@@ -6,7 +6,7 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App lang="ru_RU" />
   </React.StrictMode>,
   document.getElementById('root')
 );
