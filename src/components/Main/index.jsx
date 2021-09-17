@@ -1,21 +1,23 @@
 import React from "react";
+import constants from "./../../constants";
 
-const obj = {
-  test: {
-    deepProp: "test value",
-  },
-};
+function Main(props) {
+  console.log(props);
 
-const value = obj.test && obj.test.deepProp;
+  const action = function () {
+    props.setTime(32);
+  };
 
-const styles = { fontSize: "24px" };
-
-function Main() {
-  return (
-    <div title="Test text" className={value} style={styles}>
-      Hello From REACT {value}
-    </div>
-  );
+  // conditional render
+  // условный рендеринг
+  if (props.seconds > 31) {
+    return (
+      <div className={props.className}>
+        Hello From REACT {constants.cardNumber}
+      </div>
+    );
+  }
+  return <b onClick={action}>None</b>;
 }
 
 export default Main;
