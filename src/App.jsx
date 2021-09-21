@@ -1,25 +1,25 @@
 import React from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import TaskList from "./components/TaskList";
 import "./App.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    console.log(props.lang);
-    
-    this.state = {
-      time: new Date().getSeconds()
-    };
-  }
+const user = {
+  firstName: "John",
+  lastName: "Silverhand",
+  age: 44,
+  email: "example@mail.com",
+};
 
+class App extends React.Component {
   render() {
-    React.createElement("div", { className: "App" }, ["TEST", Header()])
+    // React.createElement("div", { className: "App" }, ["TEST", Header()])
     return (
-      <div className="App" id="123" asd="asd">
+      <div className="App">
         TEST
-        <Header />
-        <Main seconds={this.state.time} setTime={this.state.setTime} />
+        <Header link="/docs" />
+        <Main userData={user} />
+        <TaskList />
       </div>
     );
   }

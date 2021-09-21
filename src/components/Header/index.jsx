@@ -1,14 +1,8 @@
-// named import
-// import * as math from "./../../utils/math";
 import logo from "./../../logo.svg";
 import "./header.css";
 
-function Header() {
-  // const { mult, sqrt, sin } = math;
-
-  // console.log(mult(2, 3));
-  // console.log(sqrt(9));
-  // console.log(sin(30));
+function Header(props) {
+  console.log(props);
 
   return (
     <header className="App-header">
@@ -19,9 +13,10 @@ function Header() {
       </p>
       <a
         className="App-link"
-        href="https://reactjs.org"
+        href={"https://reactjs.org" + props.link}
         target="_blank"
         rel="noopener noreferrer"
+        className={props.inlineStyles}
       >
         Learn React
       </a>

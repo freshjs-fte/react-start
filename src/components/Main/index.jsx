@@ -1,23 +1,23 @@
 import React from "react";
-import constants from "./../../constants";
 
 function Main(props) {
-  console.log(props);
+  const {
+    userData: { firstName, lastName, email },
+  } = props;
 
-  const action = function () {
-    props.setTime(32);
-  };
+  const fullName = `${firstName} ${lastName}`
 
-  // conditional render
-  // условный рендеринг
-  if (props.seconds > 31) {
-    return (
-      <div className={props.className}>
-        Hello From REACT {constants.cardNumber}
+  // React.createElement
+  return (
+    <div>
+      <div>
+        <div inline>UserPhoto</div>
+        <div inline>{firstName} {lastName}</div>
       </div>
-    );
-  }
-  return <b onClick={action}>None</b>;
+
+      <div>Description</div>
+    </div>
+  );
 }
 
 export default Main;
