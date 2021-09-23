@@ -2,58 +2,79 @@ import React from "react";
 import TaskItem from "./TaskItem";
 
 class TaskList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
+    // instance
     this.state = {
-      tasksData: [
-        {
-          text: "Купить яблоки",
-          isChecked: false,
-        },
-        {
-          text: "Пылесосить",
-          isChecked: true,
-        },
-        {
-          text: "Тренировка",
-          isChecked: true,
-        },
-      ],
-    };
-
-    this.filterChecked = () => {
-      const filtered = this.state.tasksData.filter((task) => {
-        // console.log(task.isChecked);
-
-        if (task.isChecked === true) {
-          return true;
-        }
-        return false;
-      });
-
-      return filtered;
+      tasksData: [],
     };
   }
 
-  render() {
-    // const list = this.state.tasksData;
-    /* const arrayJSX1 = [];
-    for (let index = 0; index < list.length; index++) {
-      const task = list[index];
-      arrayJSX1.push(<TaskItem task={task} />);
-    } */
+  // prototype
+  componentDidMount() {
+    fetch("http://fe_mentor:5000/api/tasks")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const tasks = data.data;
+        this.setState({
+          tasksData: tasks,
+        });
+      });
+  }
 
-    const filtered = this.filterChecked();
-
-    const arrayJSX2 = filtered.map((task) => {
-      return <TaskItem task={task} />;
+  // instance
+  filterChecked = (verdict = true) => {
+    const filtered = this.state.tasksData.filter((task) => {
+      // console.log(task.isChecked);
+      if (verdict) {
+        return task.isChecked;
+      }
+      return !task.isChecked;
     });
+
+    return filtered;
+  };
+
+  deleteTask = (deleteID) => {
+    this.setState((prevState) => {
+      const result = prevState.tasksData.filter((task) => {
+        /* 
+          if (task.id === deleteID) {
+            return false;
+          } else {
+            return true;
+          } */
+
+        return task.id !== deleteID;
+      });
+
+      return {
+        tasksData: result,
+      };
+    });
+  };
+
+  makeJSX = (list) => {
+    const arrayJSX2 = list.map((task) => {
+      return (
+        <TaskItem task={task} deleteTask={this.deleteTask} key={task.id} />
+      );
+    });
+    return arrayJSX2;
+  };
+
+  // prototype
+  render() {
+    // const filtered = this.filterChecked(false);
+    const list = this.state.tasksData;
 
     return (
       <div>
         <h4>Task list:</h4>
-        <ul>{arrayJSX2}</ul>
+        <ul>{this.makeJSX(list)}</ul>
       </div>
     );
   }

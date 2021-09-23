@@ -1,10 +1,9 @@
 import React from "react";
 
-import Header from "./components/Header";
+// import Header from "./components/Header";
 // import Main from "./components/Main";
 import Footer from "./components/Footer";
-// import TaskList from "./components/TaskList";
-import SimpleLink from "./components/SimpleLink";
+import TaskList from "./components/TaskList";
 
 import "./App.css";
 
@@ -34,21 +33,9 @@ class App extends React.Component {
     // React.createElement("div", { className: "App" }, ["TEST", Header()])
     return (
       <div className="App">
-        <Header />
+        {/* <Header /> */}
         {/* <Main userData={user} /> */}
-        {/* <TaskList></TaskList> */}
-
-        <div onClick={this.toggleShow}>Show/Hide</div>
-        {this.state.show || (
-          <div>
-            <SimpleLink
-              show={true}
-              text="Learn React"
-              link="https://ru.reactjs.org/"
-              className="App-link"
-            />
-          </div>
-        )}
+        <TaskList></TaskList>
 
         <Footer />
       </div>
