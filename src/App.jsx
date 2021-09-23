@@ -1,12 +1,12 @@
 import React from "react";
 
-// import Header from "./components/Header";
+import Header from "./components/Header";
 // import Main from "./components/Main";
-// import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
+// import TaskList from "./components/TaskList";
+import SimpleLink from "./components/SimpleLink";
 
 import "./App.css";
-import SimpleLink from "./components/SimpleLink";
 
 /* const user = {
   firstName: "John",
@@ -22,13 +22,7 @@ class App extends React.Component {
     this.state = {
       show: true,
     };
-
-    // console.log("constructor");
   }
-  /* 
-  componentDidMount() {
-    console.log('mount');
-  } */
 
   toggleShow = () => {
     this.setState((prevState) => {
@@ -37,19 +31,26 @@ class App extends React.Component {
   };
 
   render() {
-    // console.log("render");
-
     // React.createElement("div", { className: "App" }, ["TEST", Header()])
     return (
       <div className="App">
-        {/* <Header className="Header" link="/docs" /> */}
+        <Header />
         {/* <Main userData={user} /> */}
         {/* <TaskList></TaskList> */}
 
-        {this.state.show || <SimpleLink show={true} text={"Mounted"} />}
-        <div onClick={this.toggleShow}>On/Off</div>
+        <div onClick={this.toggleShow}>Show/Hide</div>
+        {this.state.show || (
+          <div>
+            <SimpleLink
+              show={true}
+              text="Learn React"
+              link="https://ru.reactjs.org/"
+              className="App-link"
+            />
+          </div>
+        )}
 
-        <Footer text={"Hello Footer " + 123} />
+        <Footer />
       </div>
     );
   }

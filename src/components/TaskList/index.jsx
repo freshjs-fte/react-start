@@ -25,27 +25,26 @@ class TaskList extends React.Component {
     this.filterChecked = () => {
       const filtered = this.state.tasksData.filter((task) => {
         // console.log(task.isChecked);
-  
+
         if (task.isChecked === true) {
           return true;
         }
         return false;
       });
 
-      return filtered
-    }
+      return filtered;
+    };
   }
 
   render() {
-    const list = this.state.tasksData;
-
+    // const list = this.state.tasksData;
     /* const arrayJSX1 = [];
     for (let index = 0; index < list.length; index++) {
       const task = list[index];
       arrayJSX1.push(<TaskItem task={task} />);
     } */
 
-    const filtered = this.filterChecked()
+    const filtered = this.filterChecked();
 
     const arrayJSX2 = filtered.map((task) => {
       return <TaskItem task={task} />;
