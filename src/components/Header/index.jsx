@@ -2,6 +2,22 @@ import SimpleLink from "../SimpleLink";
 import logo from "./../../logo.svg";
 import "./header.css";
 
+/* 
+function markup() {
+  // React.createElement
+  const users = ["user1", "user2", "user3"]
+
+  const arrayOfJSX = []
+
+  for(let index = 0; index < users.length; index++) {
+
+    const jsx = <div> { users[index] } </div>
+    arrayOfJSX.push(jsx)
+  }
+
+  return <div> { arrayOfJSX } </div>
+} */
+
 function Header(props) {
   // console.log(props);
 
@@ -20,6 +36,7 @@ function Header(props) {
       >
         Learn React
       </a>
+      {/* {markup()} */}
     </header>
   );
 }
