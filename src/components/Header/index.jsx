@@ -1,8 +1,9 @@
+import SimpleLink from "../SimpleLink";
 import logo from "./../../logo.svg";
 import "./header.css";
 
 function Header(props) {
-  console.log(props);
+  // console.log(props);
 
   return (
     <header className="App-header">
@@ -12,11 +13,10 @@ function Header(props) {
         Edit <code>src/App.js</code> and save to reload.
       </p>
       <a
+        href="https://ru.reactjs.org/"
         className="App-link"
-        href={"https://reactjs.org" + props.link}
         target="_blank"
         rel="noopener noreferrer"
-        className={props.inlineStyles}
       >
         Learn React
       </a>
