@@ -32,7 +32,6 @@ class App extends React.Component {
 
   toggleShow = () => {
     this.setState((prevState) => {
-
       return { show: !prevState.show };
     });
   };
@@ -47,10 +46,8 @@ class App extends React.Component {
         {/* <Main userData={user} /> */}
         {/* <TaskList></TaskList> */}
 
-
-        <SimpleLink show={this.state.show} text={"Mounted"} />
+        {this.state.show || <SimpleLink show={true} text={"Mounted"} />}
         <div onClick={this.toggleShow}>On/Off</div>
-
 
         <Footer text={"Hello Footer " + 123} />
       </div>
