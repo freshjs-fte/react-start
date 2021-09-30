@@ -3,7 +3,8 @@ import React from "react";
 // import Header from "./components/Header";
 // import Main from "./components/Main";
 import Footer from "./components/Footer";
-import TaskList from "./components/TaskList";
+// import TaskList from "./components/TaskList";
+import WantedList from "./components/WantedList";
 
 import "./App.css";
 
@@ -35,7 +36,8 @@ class App extends React.Component {
       <div className="App">
         {/* <Header /> */}
         {/* <Main userData={user} /> */}
-        <TaskList></TaskList>
+        {/* <TaskList></TaskList> */}
+        <WantedList></WantedList>
 
         <Footer />
       </div>
