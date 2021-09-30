@@ -13,12 +13,16 @@ class TaskList extends React.Component {
 
   // prototype
   componentDidMount() {
-    fetch("http://fe_mentor:5000/api/tasks")
+    console.log("mount");
+
+    fetch("http://192.168.1.149:5000/api/tasks")
       .then((response) => {
         return response.json();
       })
-      .then((data) => {
-        const tasks = data.data;
+
+      .then((result) => {
+        const tasks = result.data;
+
         this.setState({
           tasksData: tasks,
         });
@@ -58,12 +62,12 @@ class TaskList extends React.Component {
   };
 
   makeJSX = (list) => {
-    const arrayJSX2 = list.map((task) => {
+    const arrayJSX = list.map((task) => {
       return (
         <TaskItem task={task} deleteTask={this.deleteTask} key={task.id} />
       );
     });
-    return arrayJSX2;
+    return arrayJSX;
   };
 
   // prototype
@@ -75,6 +79,7 @@ class TaskList extends React.Component {
       <div>
         <h4>Task list:</h4>
         <ul>{this.makeJSX(list)}</ul>
+        <div>{JSON.stringify(this.state.tasksData)}</div>
       </div>
     );
   }
