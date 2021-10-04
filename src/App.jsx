@@ -1,19 +1,20 @@
 import React from "react";
 
 // import Header from "./components/Header";
-// import Main from "./components/Main";
-import Footer from "./components/Footer";
+import Main from "./components/Main";
+// import Footer from "./components/Footer";
 // import TaskList from "./components/TaskList";
-import WantedList from "./components/WantedList";
+// import WantedList from "./components/WantedList";
 
+import Link from "./components/Link";
 import "./App.css";
 
-/* const user = {
+const user = {
   firstName: "John",
   lastName: "Silverhand",
   age: 44,
   email: "example@mail.com",
-}; */
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +22,8 @@ class App extends React.Component {
 
     this.state = {
       show: true,
+
+      location: "/",
     };
   }
 
@@ -30,16 +33,38 @@ class App extends React.Component {
     });
   };
 
+  switchRouter = () => {
+    const MainPage = <Main userData={user} />;
+
+    if (window.location.pathname !== this.state.location) {
+      this.setState({
+        location: window.location.pathname,
+      });
+    }
+    
+    switch (window.location.pathname) {
+      case "/": {
+        return MainPage;
+      }
+
+      default:
+        return "404 NOT FOUND";
+    }
+  };
+
   render() {
-    // React.createElement("div", { className: "App" }, ["TEST", Header()])
     return (
       <div className="App">
-        {/* <Header /> */}
-        {/* <Main userData={user} /> */}
-        {/* <TaskList></TaskList> */}
-        <WantedList></WantedList>
+        <nav>
+          <Link to="/about">About</Link>
+        </nav>
 
-        <Footer />
+        {this.switchRouter()}
+        {/* <WantedList></WantedList> */}
+
+        {/* <Header /> */}
+        {/* <TaskList></TaskList> */}
+        {/* <Footer /> */}
       </div>
     );
   }
