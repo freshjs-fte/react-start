@@ -1,12 +1,12 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // import Header from "./components/Header";
 import Main from "./components/Main";
 // import Footer from "./components/Footer";
 // import TaskList from "./components/TaskList";
-// import WantedList from "./components/WantedList";
+import WantedList from "./components/WantedList";
 
-import Link from "./components/Link";
 import "./App.css";
 
 const user = {
@@ -20,52 +20,45 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      show: true,
-
-      location: "/",
-    };
+    this.state = {};
   }
-
-  toggleShow = () => {
-    this.setState((prevState) => {
-      return { show: !prevState.show };
-    });
-  };
-
-  switchRouter = () => {
-    const MainPage = <Main userData={user} />;
-
-    if (window.location.pathname !== this.state.location) {
-      this.setState({
-        location: window.location.pathname,
-      });
-    }
-    
-    switch (window.location.pathname) {
-      case "/": {
-        return MainPage;
-      }
-
-      default:
-        return "404 NOT FOUND";
-    }
-  };
 
   render() {
     return (
-      <div className="App">
-        <nav>
-          <Link to="/about">About</Link>
-        </nav>
+      <Router>
+        <div className="App">
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/wanted">Wanted</Link>
+              </li>
+            </ul>
+          </nav>
 
-        {this.switchRouter()}
-        {/* <WantedList></WantedList> */}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => {
+                console.log(props);
+                return <Main userData={user} {...props} />;
+              }}
+            />
+            <Route exact path="/wanted">
+              <WantedList />
+            </Route>
 
-        {/* <Header /> */}
-        {/* <TaskList></TaskList> */}
-        {/* <Footer /> */}
-      </div>
+            <Route path="*">404 NOT FOUND</Route>
+            {/* <TaskList></TaskList> */}
+
+            {/* <Header /> */}
+            {/* <Footer /> */}
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
