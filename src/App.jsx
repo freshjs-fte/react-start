@@ -1,63 +1,46 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import Main from "./components/Main";
 // import Header from "./components/Header";
-import Main from "./components/Main";
 // import Footer from "./components/Footer";
 // import TaskList from "./components/TaskList";
-import WantedList from "./components/WantedList";
+// import WantedList from "./components/WantedList";
+// import CounterPage from "./pages/Counter";
+
+import Tree from "./components/Tree";
+import NotFoundPage from "./pages/NotFound";
+
+import { UserContext } from "./contexts";
 
 import "./App.css";
-
-const user = {
-  firstName: "John",
-  lastName: "Silverhand",
-  age: 44,
-  email: "example@mail.com",
-};
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
+    this.state = {
+      user: {
+        firstName: "John",
+        lastName: "Silverhand",
+        age: 44,
+        email: "example@mail.com",
+      },
+    };
   }
 
   render() {
     return (
       <Router>
-        <div className="App">
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/wanted">Wanted</Link>
-              </li>
-            </ul>
-          </nav>
-
+        <UserContext.Provider value={this.state.user}>
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={(props) => {
-                console.log(props);
-                return <Main userData={user} {...props} />;
-              }}
-            />
-            <Route exact path="/wanted">
-              <WantedList />
-            </Route>
+            <Route exact path="/" component={Tree} />
 
-            <Route path="*">404 NOT FOUND</Route>
+            <Route path="*" component={NotFoundPage} />
+
             {/* <TaskList></TaskList> */}
-
             {/* <Header /> */}
             {/* <Footer /> */}
           </Switch>
-        </div>
+        </UserContext.Provider>
       </Router>
     );
   }
