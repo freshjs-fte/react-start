@@ -29,7 +29,6 @@ class WantedList extends Component {
       nat: ["us", "fr"],
     })
     .then((data) => {
-      console.log(data);
       const wanted = data.results;
 
       this.setState({

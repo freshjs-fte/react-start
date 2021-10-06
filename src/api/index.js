@@ -11,11 +11,11 @@ const randomUserAPI = "https://randomuser.me/api/";
  * @returns {Promise} users
  */
 export function getRandomUser(options) {
-  console.log(
+  /* console.log(
     queryString.stringify(options, {
       arrayFormat: "comma",
     })
-  );
+  ); */
 
   return fetch(
     `${randomUserAPI}?${queryString.stringify(options, {
