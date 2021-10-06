@@ -17,6 +17,8 @@ import "./App.css";
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    // instance
     this.state = {
       user: {
         firstName: "John",
@@ -25,7 +27,18 @@ class App extends React.Component {
         email: "example@mail.com",
       },
     };
+    // instance
+    this.handleStepChange = function () {};
   }
+
+  // instance
+  handleStepChange = () => {};
+
+  // prototype
+  handleStepChange() {}
+
+  // class
+  static handleStepChange() {}
 
   render() {
     return (
