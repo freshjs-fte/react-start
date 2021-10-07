@@ -1,15 +1,19 @@
 import React from "react";
 import { UserContext } from "../../../../contexts";
+import { withContext } from "../../../HOCs";
 
-export default class Child extends React.Component {
+class Child extends React.Component {
   render() {
     return (
-      <div>
+      <>
         <div> CHILD</div>
-        <pre>{JSON.stringify(this.context, null, 4)}</pre>
-      </div>
+        <div>{this.props.theme}</div>
+        <pre>{JSON.stringify(this.props.context, null, 4)}</pre>
+      </>
     );
   }
 }
 
-Child.contextType = UserContext;
+const withUser = withContext(Child, UserContext);
+
+export default withUser;
