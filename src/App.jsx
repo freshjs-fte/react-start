@@ -2,13 +2,14 @@ import React, { useState } from "react";
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./components/Main";
 import { ThemeContext } from "./contexts";
+import constants from "./constants";
 
 import "./App.css";
 
 function App() {
   const [show, setShow] = useState(true);
 
-  const themeState = useState("LIGHT");
+  const themeState = useState(constants.THEMES.LIGHT);
 
   return (
     <ThemeContext.Provider value={themeState}>
@@ -21,7 +22,6 @@ function App() {
       </button>
 
       <Main show={show}></Main>
-      
     </ThemeContext.Provider>
   );
 }
