@@ -3,9 +3,10 @@ const constants = {
   cvv: 123,
   dbPass: "password",
 
-  theme: {
-    color: "white",
-    textDecoration: "underline",
+  THEMES: {
+    LIGHT: "LIGHT-THEME",
+    DARK: "DARK-THEME",
+    YELLOW: "YELLOW-THEME",
   },
 };
 
