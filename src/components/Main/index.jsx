@@ -1,6 +1,7 @@
 import { useCallback, useContext, useMemo } from "react";
 import { ThemeContext } from "../../contexts";
 import nextTheme from "../../utils/nextTheme";
+import RegisterForm from "../forms/RegisterForm";
 import styles from "./Main.module.scss";
 
 function Main(props) {
@@ -19,6 +20,7 @@ function Main(props) {
     <div className={themeStyles}>
       HOME
       <button onClick={toggleThemeFunc}>Toggle theme</button>
+      <RegisterForm />
     </div>
   );
 }
