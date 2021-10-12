@@ -1,26 +1,19 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
+import reducer, { initialState } from "./reducer";
 
 export default function RegisterForm() {
-  const [state, setState] = useState({
-    login: "",
-    password: "",
-    confPassword: "",
-    email: "",
-    birthdate: "",
-    address: "",
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handlerChange = (event) => {
     const {
       target: { value, name },
     } = event;
-    setState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
 
-  console.log(state);
+    dispatch({
+      name: name,
+      value: value,
+    });
+  };
 
   return (
     <div
