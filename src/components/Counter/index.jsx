@@ -16,21 +16,22 @@ export default class Counter extends Component {
     };
 
     this.mainPage = require(`../../localization/${this.props.lang}/mainPage`);
+    this.intID = null;
   }
 
   increase = () => {
     this.setState((prevState) => ({
       score: prevState.score + this.props.step,
     }));
-    // Object.assign({}, prevState, nextState);
-    // { ...prevState, ...nextState }
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.obj.test === this.props.obj.test) {
-      return false;
-    }
-    return true;
+  componentDidMount() {
+    const intervalID = setInterval(this.increase, 1000)
+    this.intID = intervalID
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intID)
   }
 
   render() {
