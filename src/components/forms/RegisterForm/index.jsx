@@ -2,6 +2,7 @@ import React from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 // classnames
 import { SIGNUP_SCHEME } from "../../../validation/validationShemes";
+import MyInput from "../MyInput";
 
 const initialValues = {
   firstname: "",
@@ -17,25 +18,18 @@ export default function RegisterForm(props) {
       onSubmit={props.onSubmit}
       validationSchema={SIGNUP_SCHEME}
     >
-      {({ errors, touched }) => {
+      {(formikProps) => {
         return (
           <Form>
-            <label>
-              <Field type="text" name="firstname" />
-              <ErrorMessage name="firstname" />
-            </label>
-            <label>
-              <Field type="text" name="email" />
-              <ErrorMessage name="email" />
-            </label>
-            <label>
-              <Field type="password" name="password" />
-              <ErrorMessage name="password" />
-            </label>
-            <label>
-              <Field type="password" name="confPassword" />
-              <ErrorMessage name="confPassword" />
-            </label>
+            <MyInput type="text" name="firstname" {...formikProps} />
+
+            <MyInput type="text" name="email" {...formikProps} />
+
+            <MyInput type="password" name="password" {...formikProps} />
+
+            <MyInput type="password" name="confPassword" {...formikProps} />
+
+            <ErrorMessage name="confPassword" {...formikProps} />
 
             <button type="submit">Register</button>
           </Form>
