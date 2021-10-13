@@ -1,6 +1,5 @@
 import React from "react";
-import { Field, Form, Formik, ErrorMessage } from "formik";
-// classnames
+import {Form, Formik, ErrorMessage } from "formik";
 import { SIGNUP_SCHEME } from "../../../validation/validationShemes";
 import MyInput from "../MyInput";
 
