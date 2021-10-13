@@ -1,60 +1,46 @@
-import React, { useReducer } from "react";
-import reducer, { initialState } from "./reducer";
+import React from "react";
+import { Field, Form, Formik, ErrorMessage } from "formik";
+// classnames
+import { SIGNUP_SCHEME } from "../../../validation/validationShemes";
 
-export default function RegisterForm() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+const initialValues = {
+  firstname: "",
+  email: "",
+  password: "",
+  confPassword: "",
+};
 
-  const handlerChange = (event) => {
-    const {
-      target: { value, name },
-    } = event;
-
-    dispatch({
-      name: name,
-      value: value,
-    });
-  };
-
+export default function RegisterForm(props) {
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", maxWidth: "300px" }}
+    <Formik
+      initialValues={initialValues}
+      onSubmit={props.onSubmit}
+      validationSchema={SIGNUP_SCHEME}
     >
-      <input
-        type="text"
-        name="login"
-        value={state.login}
-        onChange={handlerChange}
-      />
-      <input
-        type="password"
-        name="password"
-        value={state.password}
-        onChange={handlerChange}
-      />
-      <input
-        type="password"
-        name="confPassword"
-        value={state.confPassword}
-        onChange={handlerChange}
-      />
-      <input
-        type="text"
-        name="email"
-        value={state.email}
-        onChange={handlerChange}
-      />
-      <input
-        type="date"
-        name="birthdate"
-        value={state.birthdate}
-        onChange={handlerChange}
-      />
-      <input
-        type="text"
-        name="address"
-        value={state.address}
-        onChange={handlerChange}
-      />
-    </div>
+      {({ errors, touched }) => {
+        return (
+          <Form>
+            <label>
+              <Field type="text" name="firstname" />
+              <ErrorMessage name="firstname" />
+            </label>
+            <label>
+              <Field type="text" name="email" />
+              <ErrorMessage name="email" />
+            </label>
+            <label>
+              <Field type="password" name="password" />
+              <ErrorMessage name="password" />
+            </label>
+            <label>
+              <Field type="password" name="confPassword" />
+              <ErrorMessage name="confPassword" />
+            </label>
+
+            <button type="submit">Register</button>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }
