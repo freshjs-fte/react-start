@@ -3,20 +3,20 @@ import ChatForm from "./ChatForm";
 import ChatScreen from "./ChatScreen";
 
 export default function Chat() {
-  const [chatMessages, setChatMessagse] = useState([]);
+  const [chatMessages, setChatMessages] = useState([]);
 
   const onSubmit = (values, formikBag) => {
     console.log(values.text);
 
-    setChatMessagse((prevMessages) => {
+    setChatMessages((prevMessages) => {
+      const newMsg = {
+        text: values.text,
+        id: prevMessages.length,
+        time: Date.now(),
+      };
 
-      /* Добавить новое сообщение в state */
-      const newState = [
-        /* старые сообщения prevMessages */
-        /* плюс новое values.text */
-      ];
-
-      return newState;
+      const newMessages = [...prevMessages, newMsg];
+      return newMessages;
     });
     formikBag.resetForm();
   };
